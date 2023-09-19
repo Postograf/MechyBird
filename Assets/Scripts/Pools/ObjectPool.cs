@@ -46,7 +46,11 @@ public class ObjectPool<T>
     public Part Get()
     {
         if (_pool.Count > 0)
-            return new Part(this, _pool.Pop());
+		{
+			var item = _pool.Pop();
+			item.gameObject.SetActive(true);
+            return new Part(this, item);
+		}
         else
             return new Part(this, Spawn());
     }
