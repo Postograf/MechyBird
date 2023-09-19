@@ -36,6 +36,9 @@ public class Settings : MonoBehaviour
 
     private async void Awake()
     {
+        if (Instance is not null)
+            return;
+
         Instance = this;
 
         _json = new(Path.Combine(Application.dataPath, _file));
