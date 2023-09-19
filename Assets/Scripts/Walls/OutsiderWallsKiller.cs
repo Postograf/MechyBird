@@ -7,7 +7,7 @@ using Part = ObjectPool<Wall>.Part;
 
 public class OutsiderWallsKiller : MonoBehaviour
 {
-    [SerializeField] private BoundsDeterminant _measurer;
+    [SerializeField] private BoundsDeterminant _determinant;
 
     private Bounds _bounds;
     private List<Part> _parts = new();
@@ -16,7 +16,7 @@ public class OutsiderWallsKiller : MonoBehaviour
 
     private void Awake()
     {
-        _bounds = _measurer.GetBounds();
+        _bounds = _determinant.GetBounds();
     }
 
     private void LateUpdate()
