@@ -60,6 +60,7 @@ public class WallSpawner : MonoBehaviour
         _spawnPoint = limit.ClosestPoint(_difficulty.SpawnPoint);
         _maxShift = (Vector2)limit.ClosestPoint(_spawnPoint + _difficulty.MaxSpawnShift) - _spawnPoint;
 
+        _pool?.Clear();
         _pool = new(_difficulty.Prefab, _difficulty.MaxCount, _spawnPoint);
     }
 }

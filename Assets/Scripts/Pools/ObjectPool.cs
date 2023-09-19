@@ -62,4 +62,14 @@ public class ObjectPool<T>
     {
         return Object.Instantiate(_prefab, _storagePoint, Quaternion.identity);
     }
+
+    public void Clear()
+    {
+        foreach (var item in _pool)
+        {
+            Object.Destroy(item.gameObject);
+        }
+
+        _pool.Clear();
+    }
 }
