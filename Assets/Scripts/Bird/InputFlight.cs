@@ -16,8 +16,7 @@ public class InputFlight : MonoBehaviour
 
     private void Update()
     {
-        //if (Input.touchCount > 0)
-		if (Input.GetKey(KeyCode.Space))
+        if (Input.touchCount > 0)
             _rigidbody.velocity = Vector2.up * _flightSpeed;
         else
             _rigidbody.velocity = Vector2.down * _fallingSpeed;
