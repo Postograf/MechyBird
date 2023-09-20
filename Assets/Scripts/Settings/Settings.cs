@@ -9,18 +9,23 @@ public class Settings : MonoBehaviour
     [Serializable]
     public struct Data
     {
-        [Range(0, 1)] public float Volume;
+        [Range(-80, 20)] public float Volume;
         [Min(0)] public int Difficulty;
     }
 
     [SerializeField] private string _file;
     [SerializeField] private Data _default;
+    [SerializeField] private AudioMixerController _mixer;
 
     private float _volume;
     public float Volume 
     {
         get => _volume;
-        set => _volume = Mathf.Clamp01(value);
+        set
+        {
+            _volume = value;
+            _mixer.MasterVolume = _volume;
+        }
     }
 
     private int _difficulty;
@@ -34,15 +39,13 @@ public class Settings : MonoBehaviour
 
     public static Settings Instance { get; private set; }
 
-    private async void Awake()
+    private void Awake()
     {
-        if (Instance is not null)
-            return;
-
-        Instance = this;
-
         _json = new(Path.Combine(Application.dataPath, _file));
-        await Load();
+        Load();
+		
+        if (Instance is null)
+			Instance = this;
     }
 
     public void Save()
@@ -56,9 +59,9 @@ public class Settings : MonoBehaviour
         _json.Serialize(data, prettyPrint: true);
     }
 
-    public async Task Load()
+    public void Load()
     {
-        var data = await _json.Deserialize(_default);
+        var data = _json.Deserialize(_default);
         Volume = data.Volume;
         Difficulty = data.Difficulty;
     }

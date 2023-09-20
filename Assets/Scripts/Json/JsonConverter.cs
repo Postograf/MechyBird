@@ -1,5 +1,4 @@
 ﻿using System.IO;
-using System.Threading.Tasks;
 
 using UnityEngine;
 
@@ -20,14 +19,14 @@ public class JsonConverter<T>
         }
     }
 
-    public async Task<T> Deserialize(T @default = default)
+    public T Deserialize(T @default = default)
     {
         if (File.Exists(_path) == false)
             return @default;
 
         using (var reader = new StreamReader(_path))
         {
-            var text = await reader.ReadToEndAsync();
+            var text = reader.ReadToEnd();
             return JsonUtility.FromJson<T>(text);
         }
     }
