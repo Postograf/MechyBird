@@ -1,21 +1,20 @@
 ﻿using System;
-using System.IO;
-using System.Threading.Tasks;
 
 using UnityEngine;
 
 public class Settings : MonoBehaviour
 {
-    [Serializable]
-    public struct Data
-    {
-        [Range(-80, 20)] public float Volume;
-        [Min(0)] public int Difficulty;
-    }
-
     [SerializeField] private string _file;
-    [SerializeField] private Data _default;
+
+    [Space]
+    [SerializeField, Min(0)] private int _defaultDifficulty;
+
+    [Space]
     [SerializeField] private AudioMixerController _mixer;
+    [SerializeField, Range(-80, 20)] private float _defaultVolume;
+
+    private const string _volumeName = "Volume";
+    private const string _difficultyName = "Difficulty";
 
     private float _volume;
     public float Volume 
@@ -35,13 +34,10 @@ public class Settings : MonoBehaviour
         set => _difficulty = Mathf.Max(0, value); 
     }
 
-    private JsonConverter<Data> _json;
-
     public static Settings Instance { get; private set; }
 
     private void Awake()
     {
-        _json = new(Path.Combine(Application.dataPath, _file));
         Load();
 		
         if (Instance is null)
@@ -50,19 +46,20 @@ public class Settings : MonoBehaviour
 
     public void Save()
     {
-        var data = new Data() 
-        { 
-            Volume = _volume, 
-            Difficulty = _difficulty 
-        };
-
-        _json.Serialize(data, prettyPrint: true);
+        PlayerPrefs.SetInt(_difficultyName, _difficulty);
+        PlayerPrefs.SetFloat(_volumeName, _volume);
     }
 
     public void Load()
     {
-        var data = _json.Deserialize(_default);
-        Volume = data.Volume;
-        Difficulty = data.Difficulty;
+        if (PlayerPrefs.HasKey(_difficultyName))
+            Difficulty = PlayerPrefs.GetInt(_difficultyName);
+        else
+            Difficulty = _defaultDifficulty;
+
+        if (PlayerPrefs.HasKey(_volumeName))
+            Volume = PlayerPrefs.GetFloat(_volumeName);
+        else
+            Volume = _defaultVolume;
     }
 }
