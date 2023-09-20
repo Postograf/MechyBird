@@ -2,13 +2,13 @@
 
 public class CameraBounds2D : BoundsDeterminant
 {
-    [Tooltip("Main camera for default")]
-    [SerializeField] private Camera _camera;
     [SerializeField] private Vector2 _additionalSize;
+
+    private Camera _camera;
 
     public override Bounds GetBounds()
     {
-        if (_camera is null)
+        if (_camera == null)
             _camera = Camera.main;
 
         var extents = _camera.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height));
