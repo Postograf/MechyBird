@@ -174,21 +174,21 @@ MonoBehaviour:
   - Prefab: {fileID: 96629483268343013, guid: f20ac05ad54d18040bdedd031141725e, type: 3}
     Speed: {x: -1, y: 0}
     SpawnPoint: {x: 20, y: 0}
-    MaxSpawnShift: {x: 3, y: 0}
+    MaxSpawnShift: {x: 0, y: 3.5}
     SpawnPositionLimit: {fileID: 1266214998}
     MaxCount: 5
     SpawnDelay: 5
   - Prefab: {fileID: 3679459901299482884, guid: cb2122bdea0636e43ab85211fabf01af, type: 3}
     Speed: {x: -1.5, y: 0}
     SpawnPoint: {x: 20, y: 0}
-    MaxSpawnShift: {x: 3, y: 0}
+    MaxSpawnShift: {x: 0, y: 4}
     SpawnPositionLimit: {fileID: 1266214998}
     MaxCount: 5
     SpawnDelay: 5
   - Prefab: {fileID: 5806706277935174067, guid: b049a62c5119a6a48b41a2b0910a6bf1, type: 3}
     Speed: {x: -2, y: 0}
     SpawnPoint: {x: 20, y: 0}
-    MaxSpawnShift: {x: 3, y: 0}
+    MaxSpawnShift: {x: 0, y: 4.25}
     SpawnPositionLimit: {fileID: 1266214998}
     MaxCount: 5
     SpawnDelay: 5
@@ -206,7 +206,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 0
+        m_CallState: 2
 --- !u!114 &1266214998
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -219,7 +219,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec6f07b26e581cb4d9a18f6e9f79c04a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _camera: {fileID: 0}
   _additionalSize: {x: 2, y: 2}
 --- !u!4 &1266214999
 Transform:
