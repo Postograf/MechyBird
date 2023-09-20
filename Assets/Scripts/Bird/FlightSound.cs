@@ -15,7 +15,8 @@ public class FlightSound : MonoBehaviour
     private void LateUpdate()
     {
         if (
-			Vector2.Dot(_rigidbody.velocity, Vector2.up) > 0 
+			Time.timeScale > 0
+			&& Vector2.Dot(_rigidbody.velocity, Vector2.up) > 0 
 			&& _sound.isPlaying == false
 		)
             _sound.Play();
