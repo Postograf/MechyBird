@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class Settings : MonoBehaviour
 {
-    [SerializeField] private string _file;
-
-    [Space]
     [SerializeField, Min(0)] private int _defaultDifficulty;
 
     [Space]
