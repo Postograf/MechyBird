@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Scenes : MonoBehaviour
+public class ScenesController : MonoBehaviour
 {
     public void Load(int index)
     {
